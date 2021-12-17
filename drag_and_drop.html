@@ -1,13 +1,83 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>DragAndDrop</title>
-</head>
-<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
+    <title>Drag&Drop</title>
+</head>
+
+<body>
+<div id="dragAndDrop" class="container mt-5">
+    <h1>{{ title }}</h1>
+    <div class="d-flex justify-content-between bg-secondary p-3">
+        <div class="bg-primary p-2 m-2 w-100">
+            <h2 class="text-light">カテゴリーA</h2>
+            <div class="bg-dark text-light m-2 p-2" v-for="(list,index) in CategoryA">
+                {{ list.name }}
+            </div>
+        </div>
+        <div class="bg-primary p-2 m-2 w-100">
+            <h2 class="text-light">カテゴリーB</h2>
+            <div class="bg-dark text-light m-2 p-2" v-for="(list,index) in CategoryB">
+                {{ list.name }}
+            </div>
+        </div>
+        <div class="bg-primary p-2 m-2 w-100">
+            <h2 class="text-light">カテゴリーC</h2>
+            <div class="bg-dark text-light m-2 p-2" v-for="(list,index) in CategoryC">
+                {{ list.name }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    new Vue({
+        el: '#dragAndDrop',
+        data: {
+            title: 'どらっぐあんどどろっぷ',
+            lists: [
+                {
+                    id: 1,
+                    name: '中華そば',
+                    category: 'A'
+                },
+                {
+                    id: 2,
+                    name: '唐揚げ',
+                    category: 'B'
+                },
+                {
+                    id: 3,
+                    name: '回鍋肉',
+                    category: 'B'
+                },
+                {
+                    id: 4,
+                    name: 'チキンカツカレー',
+                    category: 'C'
+                },
+                {
+                    id: 5,
+                    name: 'ラーメン二郎',
+                    category: 'C'
+                }
+            ]
+        },
+        computed: {
+            CategoryA () {
+                return this.lists.filter(list => list.category == 'A')
+            },
+            CategoryB () {
+                return this.lists.filter(list => list.category == 'B')
+            },
+            CategoryC () {
+                return this.lists.filter(list => list.category == 'C')
+            }
+        }
+    })
+</script>
 </body>
 </html>
