@@ -83,6 +83,12 @@
                 event.dataTransfer.effectAllowed = 'move'
                 event.dataTransfer.dropEffect = 'move'
                 event.dataTransfer.setData('list-id', listId)
+            },
+            dropList(event, dropCategory) {
+                console.log(category)
+                const listId = event.dataTransfer.getData('list-id')
+                const dragList = this.lists.find(list => list.id == listId)
+                dragList.category = dropCategory
             }
         }
     })
